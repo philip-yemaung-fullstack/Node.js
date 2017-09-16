@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-2.x-git.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBXgqvwHOMVvRtXcpF8wsBgC5_jxGRaHnE"></script>
+
+    <!-- CSS and JS for our code -->
+    <style>
+        .gllpMap {
+            width: 800px;
+            height: 470px;
+        }
+    </style>
+    <script src="/javascripts/jquery-gmaps-latlon-picker.js"></script>
+</head>
+
+<body>    
+    <form action="/addnewrow" method="POST">
+        <table id="table">
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <input type="text" name="category" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <fieldset class="gllpLatlonPicker" style='border:0px;'>
+                            Latitude / Longtitude:
+                            <input type="text" class="gllpLatitude" name="latitude" /> /
+                            <input type="text" class="gllpLongitude" name="longitude" />
+                            <input type="submit" value="Add Location" />
+                            <br /> <br />
+                            <div class="gllpMap">Google Maps</div>
+                        </fieldset>
+                    </td>
+                </tr>                
+            </tbody>
+        </table>
+</body>
+<script>
+    setTimeout(function(){
+        navigator.geolocation.getCurrentPosition(function(location) {
+            var latitude= location.coords.latitude || 41.01803626720337, 
+            longitude= location.coords.longitude || -91.96725737988288;
+            document.querySelector("[name='latitude'").value = latitude;
+            document.querySelector("[name='longitude'").value = longitude;
+            $obj.setZoom(15);
+            $obj.setPost(new google.maps.LatLng(latitude, longitude));
+        });        
+    }, 0);    
+</script>
+</html>

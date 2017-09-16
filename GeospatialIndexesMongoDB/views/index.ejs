@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h3>Node.js/Express CRUD application that uses MongoDB to Add/Update/Delete location points.</h3>    
+    <a href="/addnewrow"> AddNewRow </a> | 
+    <a href="/search"> Search </a>
+    <br />
+    <br />
+    <table id="table" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Latitude</th>
+                <th>Longtitude</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% locations.forEach(function (location) { %>
+                <tr>
+                    <td>
+                        <%= location.name %>
+                    </td>
+                    <td>
+                        <%= location.category %>
+                    </td>
+                    <td>
+                        <%= location.location[1] %>
+                    </td>
+                    <td>
+                        <%= location.location[0] %>
+                    </td>
+                    <td>
+                        <a href="/edit?id=<%= location.id %>" />Edit
+                    </td>
+                    <td>
+                        <a href="/remove?id=<%= location.id %>" />Delete
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

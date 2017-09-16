@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />    
+</head>
+
+<body>    
+    <form action="/search" method="POST">
+        <table id="table">
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name" value="<%=name %>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <input type="text" name="category" required value="<%=category %>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                            <input type="submit" value="Search" />
+                        <input type="hidden" name="latitude" />
+                        <input type="hidden" name="longitude" />
+                    </td>
+                </tr>                
+            </tbody>
+        </table>
+        <table id="table" border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Latitude</th>
+                        <th>Longtitude</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% locations.forEach(function (location) { %>
+                        <tr>
+                            <td>
+                                <%= location.name %>
+                            </td>
+                            <td>
+                                <%= location.category %>
+                            </td>
+                            <td>
+                                <%= location.location[1] %>
+                            </td>
+                            <td>
+                                <%= location.location[0] %>
+                            </td>                            
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+    </form>
+</body>
+<script>
+    navigator.geolocation.getCurrentPosition(function(location) {
+            var latitude= location.coords.latitude, 
+            longitude= location.coords.longitude;
+            document.querySelector("[name='latitude'").value = latitude;
+            document.querySelector("[name='longitude'").value = longitude;            
+        });        
+</script>
+</html>

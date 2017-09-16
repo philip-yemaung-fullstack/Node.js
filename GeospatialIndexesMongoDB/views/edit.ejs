@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-2.x-git.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyBXgqvwHOMVvRtXcpF8wsBgC5_jxGRaHnE"></script>
+
+    <!-- CSS and JS for our code -->
+    <style>
+        .gllpMap {
+            width: 800px;
+            height: 470px;
+        }
+    </style>
+    <script src="/javascripts/jquery-gmaps-latlon-picker.js"></script>
+
+</head>
+
+<body>
+    <form action="/edit" method="POST">
+        <table id="table">
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="hidden" name="id" value="<%=location.id %>" />
+                        <input type="text" name="name" value="<%=location.name %>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <input type="text" name="category" value="<%=location.category %>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=2>
+                        <fieldset class="gllpLatlonPicker" style='border:0px;'>
+                            Latitude / Longtitude:
+                            <input type="text" class="gllpLatitude" name="latitude" value="<%=location.location[1] %>" /> /
+                            <input type="text" class="gllpLongitude" name="longitude" value="<%=location.location[0] %>" />
+                            <input type="submit" value="Update Location" />
+                            <br /> <br />
+                            <div class="gllpMap">Google Maps</div>
+                        </fieldset>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+<script>
+    setTimeout(function () {
+        $obj.setZoom(15);
+    }, 0);
+</script>
+</html>
